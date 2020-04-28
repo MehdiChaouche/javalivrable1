@@ -1,0 +1,41 @@
+package demenagement;
+public class Algorythme {
+	public static void main(String[] args)  {
+		int quantite_ancien_local = 34;
+		int quantite_nouveau_local = 0;
+		int nouveau_local_caisse_10_11kg = 0;
+		int nouveau_local_caisse_11_13kg = 0;
+		int nouveau_local_caisse_13_15kg = 0;
+		int nouveau_local_caisse_15kg = 0;
+		int caisses_en_transport = 0;
+		int caisses_en_transport_camion1 = 0;
+		int caisses_en_transport_camion2 = 0;
+		int caisses_max_transport = 14;
+		int caisses_max_camion1 = 9;
+		while (quantite_ancien_local > 0)
+		{
+			System.out.println(quantite_ancien_local + " ");
+			while (caisses_en_transport < caisses_max_transport && quantite_ancien_local > 0)
+			{
+				quantite_ancien_local--;
+				caisses_en_transport++;
+				if (caisses_en_transport < caisses_max_camion1)
+				{
+					caisses_en_transport_camion1++;
+				}
+				else
+				{
+					caisses_en_transport_camion2++;
+				}
+			}
+			System.out.print("|Un voyage de " + caisses_en_transport + " cartons.|" + " |" + caisses_en_transport_camion1 + " dans le camion 1 et " + caisses_en_transport_camion2 + " dans le camion 2 |");
+			while (caisses_en_transport > 0)
+			{
+				quantite_nouveau_local++;
+				caisses_en_transport--;
+				caisses_en_transport_camion1 = 0;
+				caisses_en_transport_camion2 = 0;
+			}
+		}
+	}
+}

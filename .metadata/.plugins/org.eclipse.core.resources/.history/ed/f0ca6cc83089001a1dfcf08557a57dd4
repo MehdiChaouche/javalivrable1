@@ -1,0 +1,49 @@
+package demenagement;
+public class Algorythme {
+	public static void main(String[] args)  {
+		int quantite_ancien_local = 34;
+		int caisses_en_transport = 0;
+		int caisses_en_transport_camion1 = 0;
+		int caisses_en_transport_camion2 = 0;
+		int caisses_max_transport = 14;
+		int caisses_max_camion1 = 9;
+		int numero_de_caisse_chargement = 0;
+		float poids_total_chargement = 0;
+		float poids_max_transport = 225;
+		float prevision_poids = 0;
+		float[] poidscaisse = new float [34];
+		for(int index=0; index<poidscaisse.length; index++)
+		{
+			int min = 10;
+			int max = 20;
+			poidscaisse[index]= (float) ((int) min + (max - min) * Math.random());
+			System.out.print(poidscaisse[index] + " // ");
+		}
+		while (quantite_ancien_local > 0)
+		{
+			System.out.println(quantite_ancien_local + " ");
+			while (caisses_en_transport < caisses_max_transport && quantite_ancien_local > 0 && prevision_poids < poids_max_transport )
+			{
+				poids_total_chargement = poidscaisse[numero_de_caisse_chargement] + poids_total_chargement;
+				System.out.println(poids_total_chargement + " // ");
+				numero_de_caisse_chargement++;
+				quantite_ancien_local--;
+				caisses_en_transport++;
+				if (caisses_en_transport < caisses_max_camion1)
+				{
+					caisses_en_transport_camion1++;
+				}
+				else
+				{
+					caisses_en_transport_camion2++;
+				}
+				if (quantite_ancien_local > 0)
+				{
+					prevision_poids= poids_total_chargement + poidscaisse[numero_de_caisse_chargement];
+				}
+			}
+			prevision_poids = 0;
+			System.out.print("|Un voyage de " + caisses_en_transport + " cartons.|" + " |" + caisses_en_transport_camion1 + " dans le camion 1 et " + caisses_en_transport_camion2 + " dans le camion 2 |");
+		}
+	}
+}
